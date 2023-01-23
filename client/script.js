@@ -3093,7 +3093,7 @@ $(function () {
       if (location.hostname === "localhost") {
         location.replace("https://discord.com/api/oauth2/authorize?client_id=926633278100877393&redirect_uri=http%3A%2F%2Flocalhost%2F%3Fcallback%3Ddiscord&response_type=code&scope=identify");
       } else {
-        location.replace("https://discord.com/api/oauth2/authorize?client_id=926633278100877393&redirect_uri=https%3A%2F%2Fmppclone.com%2F%3Fcallback%3Ddiscord&response_type=code&scope=identify");
+        location.replace("https://discord.com/api/oauth2/authorize?client_id=926633278100877393&redirect_uri=https%3A%2F%2Fbetter.mppclone.me%2Fclient%2F%3Fcallback%3Ddiscord&response_type=code&scope=identify");
       }
     });
   })();
@@ -3341,6 +3341,20 @@ $(function () {
           }
           else return match;
         });
+        function gettagColor(tag) {
+          if (typeof tag === 'object') return tag.color;
+          if (tag === 'BOT') return '#55f';
+          if (tag === 'OWNER') return '#a00';
+          if (tag === 'ADMIN') return '#f55';
+          if (tag === 'MOD') return '#0a0';
+          if (tag === 'MEDIA') return '#f5f';
+          return '#777';
+        }
+        
+        if(msg.p.tag) {
+          var tagText = typeof msg.p.tag === 'object' ? msg.p.tag.text : msg.p.tag;
+          message += `<span style="background-color:  ${gettagColor(msg.p.tag)};color:#ffffff;" class="nametag">${tagText}</span>`;
+        }
 
         //apply names, colors, ids
         li.find(".message").html(marked.parseInline(message));
@@ -4750,3 +4764,26 @@ $(function () {
     adsOn();
   }
 })();*/
+
+
+
+
+var thing = new MPP.Notification({
+  title: "Welcome to BetterMPP!",
+  html: `
+  <center>
+  <h2>A simple MPPClone Client Modification</h2>
+  <h1><strong>From Platapai#8337!</strong> <br>
+  <i>(Previously known as Lemon / MPPClone Moderator)</i></h1>
+  </center> <h3>Features Included: <br>
+  ⁃ MPP Hats (From <a href="https://github.com/the-dev-channel/mpp-hats/">the-dev-channel</a>) <br>
+  ⁃ Chat Tags (From <a href="https://github.com/daniel9046">Daniel9046</a>) <br>
+  ⁃ Custom CSS (From <a href="https://github.com/L3m0n-Cao/LMPP">Me!</a>) <br>
+  ⁃ More (Later when i have time uwu) <br>
+  <center>
+  <h2><strong>I hope you enjoy this Client!</strong></h2>
+  <i>Questions? Add me on <a href="https://discord.com/users/1030414034484342844">Discord!</a>.</i>
+  </center>`,
+  duration: 10000,
+  target: "#piano"
+});
